@@ -302,7 +302,7 @@ def main():
     listutil = TraktListUtil()
     # do not use the cache for account specific stuff as this is subject to change
     with requests_cache.disabled():
-        for i in range(1, 3):
+        for i in range(1, 5):
             try:
                 logging.info("requesting noncached data #{}".format(i))
                 if CONFIG['sync']['liked_lists']:
@@ -355,13 +355,13 @@ def main():
         section_start_time = time()
         if type(section) is plexapi.library.MovieSection:
             # clean_collections_in_section(section)
-            logging.info("Processing section", section.title)
+            logging.info("Processing section {}".format(section.title))
             print("Processing section", section.title)
             process_movie_section(
                 section, trakt_watched_movies, ratings, listutil, trakt_movie_collection)
         # process show sections
         elif type(section) is plexapi.library.ShowSection:
-            logging.info("Processing section", section.title)
+            logging.info("Processing section {}".format(section.title))
             print("Processing section", section.title)
             process_show_section(section)
         else:
